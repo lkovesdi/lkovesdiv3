@@ -2,17 +2,41 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../../App.css';
 import Paper from '@material-ui/core/Paper';
+import data from '../../data/data.js';
+
 
 class Main extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+          Medias: []
+        };
+       }
+        
+       componentDidMount() {
+            this.setState({
+            Medias: data
+          });
+       }
+
+
     render() {
         return (
-            <Paper>
-            <p className="App-intro">
-              To get started, edit <code>src/App.js</code> and save to reload.
-          </p> 
-          </Paper>
+            <Paper className="mainPaper">
+
+            <ul>
+        { this.state.Medias.map(Medias =>
+            <React.Fragment>
+            <li>{Medias.name}</li>
+            <li>{Medias.url}</li>
+            </React.Fragment> )}
+      </ul>
+
+            </Paper>
         )
     }
 }
+
 
 export default Main;
